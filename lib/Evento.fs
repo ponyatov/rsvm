@@ -447,7 +447,7 @@ let vscode:unit = //
         "tasks" ]
     for j in jsons do
         File.WriteAllText($".vscode/{j}.json","{\n}\n")
-    settings ; tasks
+    settings ; tasks; extensions
 
 let settings:unit = //
     File.WriteAllText ( ".vscode/settings.json","""{
