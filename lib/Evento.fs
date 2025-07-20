@@ -124,7 +124,7 @@ let lib:unit = //
     File.WriteAllText($"lib/{app}.ini", "// line comment\n")
 
 let cpp: unit = //
-    mkdir "inc"
+    mkdir "inc" ; touch $"inc/{app}.hpp"
     File.WriteAllText ($"inc/{app}.hpp","""#pragma once
 
 #include <stdlib.h>
@@ -142,7 +142,7 @@ extern FILE *yyin;
 extern int yyparse();
 extern void yyerror(char *msg);
 """)
-    mkdir "src"
+    mkdir "src" ; touch $"src/{app}.cpp"
     let include = $"#include \"{app}.hpp\""
     File.WriteAllText ($"src/{app}.cpp",include + """
 
