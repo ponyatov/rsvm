@@ -1,4 +1,6 @@
 #![allow(unused_variables)]
+#![allow(non_upper_case_globals)]
+#![allow(dead_code)]
 
 fn main() {
     let argv: Vec<String> = std::env::args().collect();
