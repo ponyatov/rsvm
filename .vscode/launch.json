@@ -1,2 +1,33 @@
 {
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "executable 'rsvm'",
+      "cargo": {
+        "args": ["build", "--bin=rsvm", "--package=rsvm"],
+        "filter": {
+          "name": "rsvm",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "unit tests in 'rsvm'",
+      "cargo": {
+        "args": ["test", "--no-run", "--bin=rsvm", "--package=rsvm"],
+        "filter": {
+          "name": "rsvm",
+          "kind": "bin"
+        }
+      },
+      "args": [],
+      "cwd": "${workspaceFolder}"
+    }
+  ]
 }
