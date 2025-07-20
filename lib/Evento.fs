@@ -330,6 +330,7 @@ cortex-m = \"0.7\"
 cortex-m-rt = \"0.7\"
 panic-semihosting = \"0.6\"
 ")
+    let CARGO = "meld Cargo.toml ~/em/Cargo.toml"
     config
     server
     firmware

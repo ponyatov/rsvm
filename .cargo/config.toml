@@ -1,0 +1,26 @@
+[build]
+target = "x86_64-unknown-linux-gnu"
+jobs = 2
+
+[profile.dev]
+incremental = true
+
+[target.x86_64-unknown-linux-gnu]
+# features = ["pc","i5","x86_64","linux"]
+linker   = "x86_64-linux-gnu-gcc"
+
+[target.aarch64-unknown-linux-gnu]
+# features = ["pi800","rk3399","aarch64","linux"]
+linker   = "aarch64-linux-gnu-gcc"
+
+[target.i686-pc-windows-gnu]
+# features = ["pc","i686","i386","mingw32"]
+linker   = "i686-w64-mingw32-gcc"
+
+[source.crates-io]
+replace-with = 'ustc'
+
+[source.ustc]
+registry = "sparse+https://mirrors.ustc.edu.cn/crates.io-index/"
+[source.tsinghua]
+registry = "sparse+https://mirrors.tuna.tsinghua.edu.cn/crates.io-index/"
