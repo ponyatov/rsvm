@@ -19,6 +19,7 @@ crate-type = ["cdylib"]
 [dependencies]
 const_format = "0.2"
 memmap2 = "0.9"
+nom = "8.0"
 
 [features]
 
