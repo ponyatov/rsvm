@@ -543,7 +543,7 @@ let mk: unit = //
         touch $"mk/{m}.mk"
     File.WriteAllText("Makefile",
         makes |> List.map (fun m -> $"include mk/{m}.mk") |> NewLines)
-    let MK = $"meld mk ~/em/mk"
+    meld "mk"
 
 let cmake: unit = //
     touch "CMakeLists.txt"
