@@ -308,6 +308,9 @@ let rsmain: unit = //
 #![allow(non_upper_case_globals)]
 #![allow(dead_code)]
 
+mod rsvm;
+use crate::rsvm::*;
+
 fn main() {
     let argv: Vec<String> = std::env::args().collect();
     let argc = argv.len();
