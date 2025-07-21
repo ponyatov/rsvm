@@ -1,0 +1,37 @@
+{
+    "name": "rsvm",
+    "displayName": "rsvm",
+    "description": "Rust Virtual Machine",
+    "version": "0.0.1",
+    "publisher": "dponyatov",
+    "license": "MIT",
+    "icon": "logo.png",
+    "engines": {
+        "vscode": "^1.102.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [
+            {
+                "id": "rsvm",
+                "aliases": [
+                    "rsvm"
+                ],
+                "extensions": [
+                    ".ini",
+                    ".rsvm"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "rsvm",
+                "scopeName": "source.rsvm",
+                "path": "./rsvm.tmLanguage.json"
+            }
+        ]
+    }
+}

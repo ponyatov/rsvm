@@ -1,0 +1,65 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "rsvm",
+    "scopeName": "source.rsvm",
+    "patterns": [
+        {
+            "include": "#comments"
+        },
+        {
+            "include": "#commands"
+        },
+        {
+            "include": "#keywords"
+        },
+        {
+            "include": "#strings"
+        }
+    ],
+    "repository": {
+        "comments": {
+            "patterns": [
+                {
+                    "name": "comment.shebang.rsvm",
+                    "match": "#!.*"
+                },
+                {
+                    "name": "comment.line.rsvm",
+                    "match": "//.*"
+                },
+                {
+                    "name": "comment.block.rsvm",
+                    "begin": "/[*]",
+                    "end": "[*]/"
+                }
+            ]
+        },
+        "commands": {
+            "patterns": [
+                {
+                    "name": "keyword.mnemonic.rsvm.assembly",
+                    "match": "\\b(nop)\\b"
+                }
+            ]
+        },
+        "keywords": {
+            "patterns": [
+                {
+                    "name": "keyword.control.rsvm",
+                    "match": "\\b(if|while|for|return)\\b"
+                }
+            ]
+        },
+        "strings": {
+            "name": "string.quoted.double.rsvm",
+            "begin": "\"",
+            "end": "\"",
+            "patterns": [
+                {
+                    "name": "constant.character.escape.rsvm",
+                    "match": "\\\\."
+                }
+            ]
+        }
+    }
+}

@@ -1,2 +1,32 @@
 {
+<<<<<<< HEAD
+=======
+    "version": 4,
+    "env":{
+        "appInclude": [
+            "${workspaceFolder}/inc/**",
+            "${workspaceFolder}/tmp/**",
+            "${workspaceFolder}/src/**"
+        ],
+        "crossInclude": [
+            "${workspaceFolder}/hw/inc/**",
+            "${workspaceFolder}/cpu/inc/**",
+            "${workspaceFolder}/arch/inc/**",
+            "${workspaceFolder}/os/inc/**"
+        ]
+    },
+    "configurations": [
+        {
+            "name"                 : "cmake",
+            "configurationProvider": "ms-vscode.cmake-tools",
+            "mergeConfigurations"  :  true,
+            "includePath": [
+                "${appInclude}", "${crossInclude}"
+            ],
+            "defines": [
+                "PC", "I5", "X86_64", "LINUX"
+            ]
+        }
+    ]
+>>>>>>> abdfaffabd10395a7972952dde016f71c18d9c9e
 }

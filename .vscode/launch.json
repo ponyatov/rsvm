@@ -1,2 +1,48 @@
 {
+<<<<<<< HEAD
+=======
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "rust:linux",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=${workspaceFolderBasename}",
+                    "--package=${workspaceFolderBasename}",
+                    "--target=x86_64-unknown-linux-gnu"
+                    // "--features=pc,i5,x86_64,linux"
+                ],
+                "filter": {
+                    "name": "rsvm",
+                    "kind": "bin"
+                }
+            },
+            "args": ["240", "320"],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "test:rsvm",
+            "cargo": {
+                "args": [
+                    "test", "--no-run",
+                    "--bin=${workspaceFolderBasename}",
+                    "--package=${workspaceFolderBasename}",
+                    "--target=x86_64-unknown-linux-gnu"
+                    // "--features=pc,i5,x86_64,linux"
+                ],
+                "filter": {
+                    "name": "rsvm",
+                    "kind": "bin"
+                }
+            },
+            "args": ["240", "320"],
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+>>>>>>> abdfaffabd10395a7972952dde016f71c18d9c9e
 }

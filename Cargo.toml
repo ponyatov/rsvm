@@ -1,0 +1,31 @@
+[package]
+name        =  "rsvm"
+version     =  "0.0.1"
+description =  "Rust Virtual Machine"
+authors     = ["Dmitry Ponyatov <dponyatov@gmail.com>"]
+license     =  "MIT"
+repository  =  "https://github.com/ponyatov/rsvm"
+edition     =  "2024"
+
+[[bin]]
+name  = "rsvm"
+path  = "src/main.rs"
+
+[lib]
+name  = "rsvm"
+path  = "src/lib.rs"
+crate-type = ["cdylib"]
+
+[dependencies]
+const_format = "0.2"
+
+[features]
+
+# hw
+pc              = ["i5"]
+# cpu
+i5              = ["x86_64"]
+# arch
+x86_64          = ["linux"]
+# os
+linux           = []

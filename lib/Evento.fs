@@ -126,7 +126,7 @@ let lib:unit = //
     File.WriteAllText($"lib/{app}.ini", "// line comment\n")
 
 let cpp: unit = //
-    mkdir "inc"
+    mkdir "inc" ; touch $"inc/{app}.hpp"
     File.WriteAllText ($"inc/{app}.hpp","""#pragma once
 
 #include <stdlib.h>
@@ -144,7 +144,7 @@ extern FILE *yyin;
 extern int yyparse();
 extern void yyerror(char *msg);
 """)
-    mkdir "src"
+    mkdir "src" ; touch $"src/{app}.cpp"
     let include = $"#include \"{app}.hpp\""
     File.WriteAllText ($"src/{app}.cpp",include + """
 
@@ -332,6 +332,7 @@ cortex-m = \"0.7\"
 cortex-m-rt = \"0.7\"
 panic-semihosting = \"0.6\"
 ")
+    let CARGO = "meld Cargo.toml ~/em/Cargo.toml"
     config
     server
     firmware
@@ -448,8 +449,12 @@ let vscode:unit = //
         "tasks" ]
     for j in jsons do
         File.WriteAllText($".vscode/{j}.json","{\n}\n")
+<<<<<<< HEAD
     meld ".vscode"
     settings ; tasks
+=======
+    settings ; tasks; extensions
+>>>>>>> abdfaffabd10395a7972952dde016f71c18d9c9e
 
 let settings:unit = //
     File.WriteAllText ( ".vscode/settings.json","""{
