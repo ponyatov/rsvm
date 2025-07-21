@@ -3,28 +3,12 @@
 #![allow(dead_code)]
 #![allow(non_camel_case_types)]
 
-use const_format::str_splice_out;
-
 /// main memory size, bytes
 pub const Msz: usize = 0x10000;
 /// return stack size, cells
 pub const Rsz: usize = 0x100;
 /// data stack size
 pub const Dsz: usize = 0x10;
-
-/// memory addresses should be short for smaller command arguments
-pub type addr = u16;
-/// memory region size also limited
-pub type Size = u16;
-/// chars must be encoded in UCS2 able to work with CJK & Cyrillic text data
-pub type ucs2 = u16;
-/// slice pair
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct slice {
-    addr: addr,
-    size: Size,
-}
 
 /// primitive types can be stored in D
 #[derive(Clone, Copy)]
@@ -34,22 +18,44 @@ pub union prim {
     /// floating point
     f: f32,
     /// char
-    c: ucs2,
+    c: char,
     /// boolean
     b: bool,
-    /// nil
-    n: (),
-    /// memory address
-    a: addr,
-    /// low-memory slice
-    s: slice,
+    /// generic pointer
+    p: *mut prim,
+    /// vm command `fn () -> ()`
+    cmd: fn(),
 }
 
 /// data stack
-static mut D: [prim; Dsz] = [prim { n: () }; Dsz];
+static mut D: [prim; Dsz] = [prim { i: 0 }; Dsz];
 /// data stack pointer
 static mut Dp: usize = 0;
 
 /// return stack
 static mut R: [usize; Rsz] = [0; Rsz];
+/// return stack pointer
 static mut Rp: usize = 0;
+
+use std::sync::atomic::{AtomicBool, Ordering};
+
+/// tracing flag
+static trace_: AtomicBool = AtomicBool::new(true);
+
+/// print command run into trace
+fn trace(command: &str) {
+    if trace_.load(Ordering::Relaxed) {
+        eprintln!("nop");
+    }
+}
+
+/// `( -- )` do nothing
+fn nop() {
+    trace("nop");
+}
+
+/// `( -- )` stop system
+fn halt() {
+    trace("halt");
+    std::process::exit(0);
+}

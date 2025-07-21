@@ -20,7 +20,6 @@ fn main() {
         let src = unsafe { Mmap::map(&srcfile).unwrap() };
         eprintln!("File size: {} bytes", src.len());
     }
-    eprintln!("addr:{:?}", size_of::<addr>());
     eprintln!("cell:{:?}", size_of::<prim>());
 }
 
