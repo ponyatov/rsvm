@@ -1,6 +1,4 @@
 {
-<<<<<<< HEAD
-=======
     "version": "2.0.0",
     "tasks": [
         {
@@ -43,5 +41,4 @@
             "presentation"   : {"showReuseMessage": true, "focus": true, "reveal": "silent", "close": false}
         },
     ]
->>>>>>> abdfaffabd10395a7972952dde016f71c18d9c9e
 }

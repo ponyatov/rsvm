@@ -1,6 +1,4 @@
 {
-<<<<<<< HEAD
-=======
     "version": "0.2.0",
     "configurations": [
         {
@@ -44,5 +42,4 @@
             "cwd": "${workspaceFolder}"
         }
     ]
->>>>>>> abdfaffabd10395a7972952dde016f71c18d9c9e
 }

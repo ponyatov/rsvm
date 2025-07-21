@@ -1,6 +1,4 @@
 {
-<<<<<<< HEAD
-=======
     "version": 4,
     "env":{
         "appInclude": [
@@ -28,5 +26,4 @@
             ]
         }
     ]
->>>>>>> abdfaffabd10395a7972952dde016f71c18d9c9e
 }

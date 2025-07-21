@@ -34,7 +34,8 @@ let mkdir (path: string) : unit =
 
 let NewLines = List.reduce (fun a b -> $"{a}\n{b}")
 
-let meld path = $"meld {path} ~/em/{path}"
+let meld path = $"meld {path} ~/em/{path} &"
+let spawn cmd = cmd
 
 // env
 let USER = Environment.UserName
@@ -449,12 +450,8 @@ let vscode:unit = //
         "tasks" ]
     for j in jsons do
         File.WriteAllText($".vscode/{j}.json","{\n}\n")
-<<<<<<< HEAD
     meld ".vscode"
     settings ; tasks
-=======
-    settings ; tasks; extensions
->>>>>>> abdfaffabd10395a7972952dde016f71c18d9c9e
 
 let settings:unit = //
     File.WriteAllText ( ".vscode/settings.json","""{
@@ -530,8 +527,6 @@ let tasks:unit = //
     ]
 }
 """)
-
-let MELD = "meld .vscode ~/em/.vscode"
 
 let dirs:unit = //
     bin
