@@ -4,4 +4,4 @@ doc:
 .PHONY: doxy
 doxy: .doxygen doc/DoxygenLayout.xml doc/logo.png
 	rm -rf doc/html ; doxygen $< 1>/dev/null
-	cargo doc && cp -r target/doc/$(APP) doc/html/
+	cargo doc && cp -r target/$(RTARGET)/doc/$(APP) doc/html/

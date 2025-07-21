@@ -2,16 +2,16 @@
 #![allow(non_upper_case_globals)]
 #![allow(dead_code)]
 
-const Msz: usize = 0x10000;
-/// memory size
-const Rsz: usize = 0x100;
-/// return stack size
-const Dsz: usize = 0x10;
+/// main memory size, bytes
+pub const Msz: usize = 0x10000;
+/// return stack size, cells
+pub const Rsz: usize = 0x100;
 /// data stack size
+pub const Dsz: usize = 0x10;
 
 /// primitive types can be stored in D
 #[derive(Clone, Copy)]
-union Primitive {
+pub union Primitive {
     /// integer
     i: i32,
     /// floating point
