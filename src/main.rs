@@ -2,6 +2,9 @@
 #![allow(non_upper_case_globals)]
 #![allow(dead_code)]
 
+mod rsvm;
+use crate::rsvm::*;
+
 fn main() {
     let argv: Vec<String> = std::env::args().collect();
     let argc = argv.len();
@@ -9,6 +12,7 @@ fn main() {
     for (i, argv) in argv.iter().skip(1).enumerate() {
         arg(i + 1, argv);
     }
+    eprintln!("addr:{:?}", size_of::<Addr>());
 }
 
 fn arg(argc: usize, argv: &str) {
