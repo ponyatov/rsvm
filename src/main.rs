@@ -6,6 +6,9 @@ fn main() {
     let argv: Vec<String> = std::env::args().collect();
     let argc = argv.len();
     arg(0, &argv[0]);
+    for (i, argv) in argv.iter().skip(1).enumerate() {
+        arg(i + 1, argv);
+    }
 }
 
 fn arg(argc: usize, argv: &str) {

@@ -34,7 +34,7 @@
             "label"          : "cargo: watch",
             "type"           : "shell",
             "command"        : "cargo",
-            "args"           : ["watch","-x","run --target x86_64-unknown-linux-gnu"],
+            "args"           : ["watch","-x","run --target x86_64-unknown-linux-gnu -- lib/${workspaceFolderBasename}.ini"],
             "options"        : {"cwd": "${workspaceFolder}"},
             "problemMatcher" : ["$rustc"],
             "group"          : {"kind": "build", "isDefault": true },
