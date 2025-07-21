@@ -1,6 +1,7 @@
 #![allow(unused_variables)]
 #![allow(non_upper_case_globals)]
 #![allow(dead_code)]
+#![allow(unused_imports)]
 
 mod rsvm;
 use crate::rsvm::*;
@@ -19,7 +20,8 @@ fn main() {
         let src = unsafe { Mmap::map(&srcfile).unwrap() };
         eprintln!("File size: {} bytes", src.len());
     }
-    eprintln!("addr:{:?}", size_of::<Addr>());
+    eprintln!("addr:{:?}", size_of::<addr>());
+    eprintln!("cell:{:?}", size_of::<prim>());
 }
 
 fn arg(argc: usize, argv: &str) {
