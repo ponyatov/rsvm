@@ -120,7 +120,7 @@ PROJECT_LOGO           = doc/logo.png
 ")
     let LOGO = "cp ~/icons/control64.png doc/logo.png"
     let DOXY = "doxygen -l ; mv DoxygenLayout.xml doc/"
-    let DOTX = "meld .doxygen ~/em/.doxygen"
+    meld ".doxygen"
 
 let lib:unit = //
     mkdir "lib"
