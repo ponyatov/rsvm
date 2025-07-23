@@ -9,7 +9,7 @@ edition     =  "2024"
 
 [[bin]]
 name        =  "rsvm"
-path        =  "src/rsvm.rs"
+path        =  "src/main.rs"
 
 [lib]
 name        =  "vmlib"
