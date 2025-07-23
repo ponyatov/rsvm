@@ -14,3 +14,6 @@ pub const status_bg: sdl2::pixels::Color = sdl2::pixels::Color::RGB(0x22, 0x11, 
 pub const status_clock: sdl2::pixels::Color = sdl2::pixels::Color::RGB(0x12, 0x34, 0x56);
 // navigator bar background
 pub const navbar_bg: sdl2::pixels::Color = sdl2::pixels::Color::RGB(0x11, 0x22, 0x11);
+
+/// base font size
+pub const font_size: u8 = 10;

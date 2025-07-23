@@ -5,6 +5,8 @@ mod config;
 use sdl2::event::Event;
 use sdl2::keyboard::Keycode;
 use sdl2::rect::Rect;
+use sdl2::rwops::{self, RWops};
+use sdl2::ttf;
 
 pub struct GUI {
     sdl_context: sdl2::Sdl,
@@ -14,10 +16,13 @@ pub struct GUI {
     fps: std::time::Duration,
     status: Rect,
     navbar: Rect,
+    ttf_context: sdl2::ttf::Sdl2TtfContext,
+    font: ttf::Font<'static, 'static>,
 }
 
+const SpaceMono_Regular: &[u8] = include_bytes!("../../static/font/SpaceMono-Regular.ttf");
+
 impl GUI {
-    /// start SDL session
     pub fn init(title: &str) -> Self {
         let iW = config::W as i32;
         let iH = config::H as i32;
@@ -40,6 +45,13 @@ impl GUI {
         let fps = std::time::Duration::new(0, 1_000_000_000u32 / 60);
         let status = Rect::new(0, 0, uW, uH / 0x10);
         let navbar = Rect::new(0, iH / 0x10 * 0x0F, uW, uH / 0x10);
+        let ttf_context = sdl2::ttf::init().unwrap();
+        let font = {
+            let rw = rwops::RWops::from_bytes(SpaceMono_Regular).unwrap();
+            ttf_context
+                .load_font_from_rwops(rw, config::font_size.into())
+                .unwrap()
+        };
         Self {
             sdl_context,
             window,
@@ -48,6 +60,8 @@ impl GUI {
             fps,
             status,
             navbar,
+            ttf_context,
+            font,
         }
     }
     /// stop SDL session
