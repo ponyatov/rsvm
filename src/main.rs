@@ -25,8 +25,7 @@ fn main() {
         eprintln!("File size: {} bytes", src.len());
     }
     eprintln!("cell:{:?}", size_of::<prim>());
-    gui::init();
-    gui::fini();
+    gui::GUI::init(&argv[0]).run();
 }
 
 fn arg(argc: usize, argv: &str) {

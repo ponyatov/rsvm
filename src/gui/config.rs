@@ -1,4 +1,8 @@
+#![allow(non_camel_case_types)]
+
+type coord = u16;
+
 /// screen width (mobile phone emulation)
-pub const W: u32 = 240;
+pub const W: coord = 240;
 /// screen height (mobile phone emulation)
-pub const H: u32 = 320;
+pub const H: coord = 320;
