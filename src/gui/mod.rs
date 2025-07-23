@@ -64,6 +64,7 @@ impl GUI {
             font,
         }
     }
+
     /// stop SDL session
     pub fn fini(&self) {}
 
