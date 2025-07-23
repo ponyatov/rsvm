@@ -4,6 +4,7 @@ mod config;
 
 use sdl2::event::Event;
 use sdl2::keyboard::Keycode;
+use sdl2::rect::Rect;
 
 pub struct GUI {
     sdl_context: sdl2::Sdl,
@@ -11,16 +12,22 @@ pub struct GUI {
     event_pump: sdl2::EventPump,
     canvas: sdl2::render::Canvas<sdl2::video::Window>,
     fps: std::time::Duration,
+    status: Rect,
+    navbar: Rect,
 }
 
 impl GUI {
     /// start SDL session
     pub fn init(title: &str) -> Self {
+        let iW = config::W as i32;
+        let iH = config::H as i32;
+        let uW = config::W as u32;
+        let uH = config::H as u32;
         let sdl_context = sdl2::init().unwrap();
         let video_subsystem = sdl_context.video().unwrap();
         let window = video_subsystem
-            .window(title, config::W.into(), config::H.into())
-            .position((config::W / 8).into(), (config::H * 2).into())
+            .window(title, uW, uH)
+            .position(iW / 8, iH * 2)
             // .position_centered()
             // .opengl()
             // .flags(WindowFlags::INPUT_FOCUS)
@@ -31,12 +38,16 @@ impl GUI {
         let event_pump = sdl_context.event_pump().unwrap();
         let canvas = window.clone().into_canvas().build().unwrap();
         let fps = std::time::Duration::new(0, 1_000_000_000u32 / 60);
+        let status = Rect::new(0, 0, uW, uH / 0x10);
+        let navbar = Rect::new(0, iH / 0x10 * 0x0F, uW, uH / 0x10);
         Self {
             sdl_context,
             window,
             event_pump,
             canvas,
             fps,
+            status,
+            navbar,
         }
     }
     /// stop SDL session
@@ -62,8 +73,16 @@ impl GUI {
 
     /// render loop
     pub fn render(&mut self) {
-        self.canvas.set_draw_color(config::background);
+        // root window
+        self.canvas.set_draw_color(config::root_bg);
         self.canvas.clear();
+        // status bar
+        self.canvas.set_draw_color(config::status_bg);
+        self.canvas.fill_rect(self.status).unwrap();
+        // status bar
+        self.canvas.set_draw_color(config::navbar_bg);
+        self.canvas.fill_rect(self.navbar).unwrap();
+        // repaint
         self.canvas.present();
     }
 }
