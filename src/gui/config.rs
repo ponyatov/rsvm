@@ -6,3 +6,6 @@ type coord = u16;
 pub const W: coord = 240;
 /// screen height (mobile phone emulation)
 pub const H: coord = 320;
+
+/// root window background
+pub const background: sdl2::pixels::Color = sdl2::pixels::Color::RGB(0x22, 0x22, 0x22);
