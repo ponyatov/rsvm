@@ -26,6 +26,7 @@ fn main() {
     }
     eprintln!("cell:{:?}", size_of::<prim>());
     gui::init();
+    gui::fini();
 }
 
 fn arg(argc: usize, argv: &str) {
