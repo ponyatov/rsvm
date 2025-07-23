@@ -23,7 +23,7 @@ nom          = "8.0"
 
 [target.'cfg(all(target_os = "linux"))'.dependencies]
 libc = "0.2"
-sdl2 = { version = "0.38", features = ["unsafe_textures"] }
+sdl2 = { version = "0.38", features = ["unsafe_textures","ttf"] }
 
 [features]
 
