@@ -8,18 +8,18 @@ repository  =  "https://github.com/ponyatov/rsvm"
 edition     =  "2024"
 
 [[bin]]
-name  = "rsvm"
-path  = "src/main.rs"
+name        =  "rsvm"
+path        =  "src/main.rs"
 
 [lib]
-name  = "rsvm"
-path  = "src/lib.rs"
-crate-type = ["cdylib"]
+name        =  "rsvm"
+path        =  "src/lib.rs"
+crate-type  = ["cdylib"]
 
 [dependencies]
 const_format = "0.2"
-memmap2 = "0.9"
-nom = "8.0"
+memmap2      = "0.9"
+nom          = "8.0"
 
 [features]
 
