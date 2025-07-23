@@ -14,3 +14,7 @@ $(RUSTUP) $(CARGO):
 .PHONY: server
 server: $(R)
 	cargo watch -x "run -p server --target x86_64-unknown-linux-gnu"
+
+.PHONY: watch
+watch: $(R)
+	cargo watch -x "run --target x86_64-unknown-linux-gnu -- $(S)"
