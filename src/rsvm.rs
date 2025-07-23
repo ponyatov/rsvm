@@ -1,61 +1,33 @@
 #![allow(unused_variables)]
 #![allow(non_upper_case_globals)]
 #![allow(dead_code)]
-#![allow(non_camel_case_types)]
+#![allow(unused_imports)]
+#![allow(special_module_name)]
 
-/// main memory size, bytes
-pub const Msz: usize = 0x10000;
-/// return stack size, cells
-pub const Rsz: usize = 0x100;
-/// data stack size
-pub const Dsz: usize = 0x10;
+mod lib;
+use lib::*;
 
-/// primitive types can be stored in D
-#[derive(Clone, Copy)]
-pub union prim {
-    /// integer
-    i: i32,
-    /// floating point
-    f: f32,
-    /// char
-    c: char,
-    /// boolean
-    b: bool,
-    /// generic pointer
-    p: *mut prim,
-    /// vm command `fn () -> ()`
-    cmd: fn(),
-}
+mod gui;
+use gui::*;
 
-/// data stack
-static mut D: [prim; Dsz] = [prim { i: 0 }; Dsz];
-/// data stack pointer
-static mut Dp: usize = 0;
+use memmap2::Mmap;
+use std::fs::File;
+use std::path::Path;
 
-/// return stack
-static mut R: [usize; Rsz] = [0; Rsz];
-/// return stack pointer
-static mut Rp: usize = 0;
-
-use std::sync::atomic::{AtomicBool, Ordering};
-
-/// tracing flag
-static trace_: AtomicBool = AtomicBool::new(true);
-
-/// print command run into trace
-fn trace(command: &str) {
-    if trace_.load(Ordering::Relaxed) {
-        eprintln!("nop");
+fn main() {
+    let argv: Vec<String> = std::env::args().collect();
+    let argc = argv.len();
+    arg(0, &argv[0]);
+    for (i, argv) in argv.iter().skip(1).enumerate() {
+        arg(i + 1, argv);
+        let srcfile = File::open(Path::new(argv)).unwrap();
+        let src = unsafe { Mmap::map(&srcfile).unwrap() };
+        eprintln!("File size: {} bytes", src.len());
     }
+    eprintln!("cell:{:?}", size_of::<prim>());
+    gui::init();
 }
 
-/// `( -- )` do nothing
-fn nop() {
-    trace("nop");
-}
-
-/// `( -- )` stop system
-fn halt() {
-    trace("halt");
-    std::process::exit(0);
+fn arg(argc: usize, argv: &str) {
+    eprintln!("argv[{argc}] = {argv:?}");
 }

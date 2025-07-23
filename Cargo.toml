@@ -9,10 +9,10 @@ edition     =  "2024"
 
 [[bin]]
 name        =  "rsvm"
-path        =  "src/main.rs"
+path        =  "src/rsvm.rs"
 
 [lib]
-name        =  "rsvm"
+name        =  "vmlib"
 path        =  "src/lib.rs"
 crate-type  = ["cdylib"]
 
