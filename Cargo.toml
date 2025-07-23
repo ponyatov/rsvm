@@ -21,6 +21,10 @@ const_format = "0.2"
 memmap2      = "0.9"
 nom          = "8.0"
 
+[target.'cfg(all(target_os = "linux"))'.dependencies]
+libc = "0.2"
+sdl2 = { version = "0.38", features = ["unsafe_textures"] }
+
 [features]
 
 # hw
