@@ -130,7 +130,14 @@ impl GUI {
         let h = clock_query.height;
         let x = self.status.w - w as i32;
         let clock_rect = Rect::new(x, 0, w, h);
+        let clock_big = Rect::new(
+            font_size as i32,
+            (font_size as i32) * 2,
+            config::W as u32 - font_size as u32 * 2,
+            (config::W / 2) as u32,
+        );
         self.canvas.copy(&clock_texture, None, clock_rect).unwrap();
+        self.canvas.copy(&clock_texture, None, clock_big).unwrap();
         // status bar
         self.canvas.set_draw_color(config::navbar_bg);
         self.canvas.fill_rect(self.navbar).unwrap();
