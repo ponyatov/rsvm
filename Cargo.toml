@@ -17,7 +17,7 @@ path        =  "src/lib.rs"
 crate-type  = ["cdylib"]
 
 [dependencies]
-chrono       = {version = "0.4",features = ["now"]}
+# chrono       = {version = "0.4",features = ["now"]}
 const_format = "0.2"
 memmap2      = "0.9"
 nom          = "8.0"
