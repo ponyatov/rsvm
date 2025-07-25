@@ -47,7 +47,7 @@ impl GUI {
             .unwrap();
         let event_pump = sdl_context.event_pump().unwrap();
         let canvas = window.clone().into_canvas().build().unwrap();
-        let fps = std::time::Duration::new(1, 0); //1_000_000_000u32 / 60);
+        let fps = std::time::Duration::new(0, 1_000_000 * 500);
         let status = Rect::new(0, 0, uW, font_size as u32);
         let navbar = Rect::new(0, iH / 0x10 * 0x0F, uW, font_size as u32);
         let ttf_context = {

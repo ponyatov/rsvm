@@ -26,7 +26,16 @@ pub union prim {
     p: *mut prim,
     /// vm command `fn () -> ()`
     cmd: fn(),
+    /// nil
+    nil: (),
 }
+
+/// main memory
+static mut M: [prim; Msz] = [prim { nil: () }; Msz];
+/// compiler pointer
+static mut Cp: uint = 0;
+/// instruction point
+static mut Ip: uint = 0;
 
 /// data stack
 static mut D: [prim; Dsz] = [prim { i: 0 }; Dsz];
