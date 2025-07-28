@@ -6,6 +6,8 @@ let TITLE = "Rust Virtual Machine"
 
 let ABOUT = "
 - object virtual machine
+- single-thread VM for learning purposes
+- avoid parallelism and concurrency for leaving code simple
 "
 
 // mostly constant metainfo
@@ -100,7 +102,7 @@ let FLIC = $"git remote add flic git@gitflic.ru:dponyatov/{app}.git"
 let CLONE = $"git clone -o gh git@github.com:ponyatov/{app}.git {HOME}/{APP}"
 let GITGUI = $"git gui &"
 let PULL = $"git pull -v gh {USER}"
-let COMMIT = $"git add -A ; git commit -am \".\" ; git push -v -u gh {USER}"
+let COMMIT = $"git add -A ; git commit -am \".\" ; git push -v -u gh {USER} ; pp"
 
 let bin:unit = //
     for d in ["bin"; "tmp"; "ref"] do
@@ -355,7 +357,7 @@ cortex-m = \"0.7\"
 cortex-m-rt = \"0.7\"
 panic-semihosting = \"0.6\"
 ")
-    let CARGO = "meld Cargo.toml ~/em/Cargo.toml"
+    meld "Cargo.toml"
     config
     server
     firmware
@@ -363,10 +365,12 @@ panic-semihosting = \"0.6\"
 
 let html:unit = //
     mkdir "static"
+    File.WriteAllText ("static/.gitignore","*.wasm\n!.gitignore\n")
     mkdir "static/cdn"
     File.WriteAllText ("static/cdn/.gitignore","*\n!.gitignore\n")
     touch "static/index.html"
     touch "static/css.css"
+    touch "static/js.js"
     touch $"src/{app}.ts"
 
 let src:unit = //
@@ -472,8 +476,8 @@ let vscode:unit = //
         "tasks" ]
     for j in jsons do
         File.WriteAllText($".vscode/{j}.json","{\n}\n")
-    meld ".vscode"
     settings ; tasks
+    meld ".vscode"
 
 let settings:unit = //
     File.WriteAllText ( ".vscode/settings.json","""{
@@ -550,6 +554,8 @@ let tasks:unit = //
 }
 """)
 
+meld ".vscode"
+
 let dirs:unit = //
     bin
     doc
@@ -560,7 +566,7 @@ let dirs:unit = //
 
 let mk: unit = //
     mkdir "mk"
-    let makes = ["var";"version";"dir";"cross";"tool";"src";"all";"format";"rule";"doc";"rust";"python";"ts";"gz";"install";"merge";"ai"]
+    let makes = ["var";"version";"dir";"cross";"tool";"src";"all";"format";"rule";"doc";"rust";"python";"ts";"gz";"ref";"install";"merge";"ai"]
     for m in makes do
         touch $"mk/{m}.mk"
     File.WriteAllText("Makefile",

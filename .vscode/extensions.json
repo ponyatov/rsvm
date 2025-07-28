@@ -9,6 +9,11 @@
         "esbenp.prettier-vscode",
         // misc
         "usernamehw.errorlens",
+        // Web/JS
+        "esbenp.prettier-vscode",
+        "mechatroner.rainbow-csv",
+        "jock.svg",
+        "dtsvet.vscode-wasm",
         // C++
         "ms-vscode.cpptools",
         "jeff-hykin.better-cpp-syntax",
@@ -18,9 +23,11 @@
         // Rust
         "rust-lang.rust-analyzer",
         "tamasfe.even-better-toml",
-        "swellaby.vscode-rust-test-adapter",
         "vadimcn.vscode-lldb",
         // F#
         "ionide.ionide-fsharp",
-        "redhat.vscode-xml",
+        // LLVM
+        "rreverser.llvm",
+        "revng.llvm-ir",
+    ]
 }

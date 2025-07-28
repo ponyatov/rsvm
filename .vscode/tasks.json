@@ -31,12 +31,31 @@
             "group"          : {"kind": "build", "isDefault": true}
         },
         {
-            "label"          : "cargo: watch",
+            "label"          : "cargo: main",
             "type"           : "shell",
             "command"        : "cargo",
-            "args"           : ["watch","-x","run --target x86_64-unknown-linux-gnu -- lib/${workspaceFolderBasename}.ini"],
+            "args"           : ["watch","-x","run --bin main --target x86_64-unknown-linux-gnu -- lib/${workspaceFolderBasename}.ini"],
             "options"        : {"cwd": "${workspaceFolder}"},
             "problemMatcher" : ["$rustc"],
+            "group"          : {"kind": "build", "isDefault": true },
+            "presentation"   : {"showReuseMessage": true, "focus": true, "reveal": "silent", "close": false}
+        },
+        {
+            "label"          : "cargo: server",
+            "type"           : "shell",
+            "command"        : "cargo",
+            "args"           : ["watch","-x","run --bin server --target x86_64-unknown-linux-gnu -- lib/${workspaceFolderBasename}.ini"],
+            "options"        : {"cwd": "${workspaceFolder}"},
+            "problemMatcher" : ["$rustc"],
+            "group"          : {"kind": "build", "isDefault": true },
+            "presentation"   : {"showReuseMessage": true, "focus": true, "reveal": "silent", "close": false}
+        },
+        {
+            "label"          : "wasm: hello",
+            "type"           : "shell",
+            "command"        : "make tmp/hello.wat",
+            "options"        : {"cwd": "${workspaceFolder}"},
+            "problemMatcher" : [],
             "group"          : {"kind": "build", "isDefault": true },
             "presentation"   : {"showReuseMessage": true, "focus": true, "reveal": "silent", "close": false}
         },

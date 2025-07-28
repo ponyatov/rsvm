@@ -3,7 +3,7 @@ install: $(WS)_install $(RUSTUP) doc ref gz
 	$(MAKE) update
 update : $(WS)_update $(RUSTUP)
 	$(RUSTUP) self update && $(RUSTUP) update
-ref    : $(RF)
+ref    : $(REF)
 gz     : $(GZ)
 
 Debian_install:

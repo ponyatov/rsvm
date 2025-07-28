@@ -7,6 +7,8 @@
         "target/**": true, "obj/**": true,
     },
     "files.associations": {
+        "*.mk": "makefile", "*.make": "makefile",
+        "*.service": "systemd-unit-file",
         "*.ini": "rsvm", "*.f": "rsvm",
     },
 
@@ -26,7 +28,7 @@
     "terminal.integrated.copyOnSelection": true,
     // "git.enabled": false,
     "files.autoSave": "afterDelay",
-    "files.autoSaveDelay": 3333,
+    "files.autoSaveDelay": 2222,
 
     // JavaScript
     "prettier.configPath"         : ".prettierrc",
@@ -56,7 +58,7 @@
     "rust-analyzer.checkOnSave"          : false,
     "rust-analyzer.check.allTargets"     : false,
     "rust-analyzer.cargo.target"         : "x86_64-unknown-linux-gnu",
-    "rust-analyzer.cargo.features"       : ["pc","i5","x86_64","linux"],
+    // "rust-analyzer.cargo.features"       : ["pc","i5","x86_64","linux"],
     // "rust-analyzer.cargo.target"         : "aarch64-unknown-linux-gnu",
     // "rust-analyzer.cargo.target"         : "i686-pc-windows-gnu",
     "[rust]": { "editor.defaultFormatter": "rust-lang.rust-analyzer" },

@@ -1,31 +1,30 @@
-#![allow(unused_variables)]
-#![allow(non_upper_case_globals)]
-#![allow(dead_code)]
-#![allow(unused_imports)]
-#![allow(special_module_name)]
+//! executable file integrates VM components
+//! - parser
+//! - byte-code compiler (in-memory only)
+//! - byte-code interpreter
 
-mod lib;
-use lib::*;
-
+mod config;
 mod gui;
-use gui::*;
 
 use memmap2::Mmap;
 use std::fs::File;
 use std::path::Path;
+use std::io;
+use std::io::Write;
 
 fn main() {
     let argv: Vec<String> = std::env::args().collect();
-    let argc = argv.len();
+    let _argc = argv.len();
     arg(0, &argv[0]);
-    for (i, argv) in argv.iter().skip(1).enumerate() {
-        arg(i + 1, argv);
-        let srcfile = File::open(Path::new(argv)).unwrap();
-        let src = unsafe { Mmap::map(&srcfile).unwrap() };
+    for (argc, argv) in argv.iter().enumerate().skip(1) {
+        arg(argc, argv);
+        let file = File::open(Path::new(argv)).unwrap();
+        let src = unsafe { Mmap::map(&file).unwrap() };
         eprintln!("File size: {} bytes", src.len());
+        // eprintln!("{:?}", &mmap[..] as &str);
+        io::stdout().write_all(&mmap[..]).unwrap();
     }
-    eprintln!("cell:{:?}", size_of::<prim>());
-    gui::GUI::init(&argv[0]).run();
+    gui::GUI::new(&argv[0]).run();
 }
 
 fn arg(argc: usize, argv: &str) {
