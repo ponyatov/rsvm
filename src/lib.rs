@@ -18,7 +18,7 @@ pub const Dsz: usize = 0x10;
 
 /// atom/primitive types
 #[derive(Copy, Clone)]
-pub enum Primitive {
+pub enum Value {
     /// signed integer
     Int(i32),
     /// floating point
@@ -31,9 +31,9 @@ pub enum Primitive {
     Nil,
 }
 
-impl Default for Primitive {
+impl Default for Value {
     fn default() -> Self {
-        Primitive::Nil
+        Value::Nil
     }
 }
 
@@ -54,7 +54,7 @@ fn halt() {
 /// low-level bytecode
 pub enum ByteCode {
     /// Primitive can be used as is
-    Primitive(Primitive),
+    Primitive(Value),
     /// functions can be used as VM command
     Cmd(Cmd),
 }
@@ -71,13 +71,24 @@ pub struct Stack<T, const S: usize> {
 }
 
 /// Virtual Machine execution context
-pub struct Context {
+pub struct VM {
     /// data stack
-    data: Stack<Primitive, { VM_DSZ }>,
+    data: Stack<Value, { VM_DSZ }>,
     /// return stack
     ret: Stack<usize, { VM_RSZ }>,
     /// active sequence
     seq: Seq,
     /// execution pointer
     ip: usize,
+}
+
+impl VM {
+    pub fn new() -> Self {
+        VM {
+            data: Stack::new(),
+            ret: Stack::new(),
+            seq: Vec::new(),
+            ip: 0,
+        }
+    }
 }

@@ -22,7 +22,7 @@ fn main() {
         let src = unsafe { Mmap::map(&file).unwrap() };
         eprintln!("File size: {} bytes", src.len());
         // eprintln!("{:?}", &mmap[..] as &str);
-        io::stdout().write_all(&mmap[..]).unwrap();
+        io::stdout().write_all(&src[..]).unwrap();
     }
     gui::GUI::new(&argv[0]).run();
 }
