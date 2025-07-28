@@ -32,7 +32,7 @@ pub mod gui {
     pub const icon_size: u16 = 64;
 
     // /// root window background
-    // pub const root_bg: sdl2::pixels::Color = sdl2::pixels::Color::RGB(0x22, 0x22, 0x33);
+    pub const root_bg: (u8, u8, u8) = (0x22, 0x22, 0x22);
     // // status bar background
     // pub const status_bg: sdl2::pixels::Color = sdl2::pixels::Color::RGB(0x22, 0x11, 0x11);
     // pub const status_clock: sdl2::pixels::Color = sdl2::pixels::Color::RGB(0xAA, 0xBB, 0xCC);
