@@ -6,3 +6,9 @@
 github: https://github.com/ponyatov/rsvm
 
 - object virtual machine
+- single-thread VM for learning purposes
+- avoid parallelism and concurrency for leaving code simple
+- vmgen:
+  - VM code generation
+  - bytecode decompiler
+  - tracing/profiling
