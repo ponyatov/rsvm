@@ -2,7 +2,6 @@
 #![allow(unused_variables)]
 
 mod config;
-// use config::*;
 
 use std::{
     io::{Read, Write},

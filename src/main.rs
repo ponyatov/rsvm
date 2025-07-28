@@ -5,6 +5,7 @@
 
 mod config;
 mod gui;
+mod vm;
 
 use memmap2::Mmap;
 use std::fs::File;
@@ -24,6 +25,7 @@ fn main() {
         // eprintln!("{:?}", &mmap[..] as &str);
         io::stdout().write_all(&src[..]).unwrap();
     }
+    vm::VM::new().run();
     gui::GUI::new(&argv[0]).run();
 }
 

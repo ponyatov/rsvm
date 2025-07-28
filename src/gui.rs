@@ -1,4 +1,5 @@
 //! generic GUI library for framebuffer-like output
+
 #![allow(dead_code)]
 #![allow(unused_imports)]
 

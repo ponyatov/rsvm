@@ -3,12 +3,14 @@
 // #![allow(non_camel_case_types)]
 #![allow(non_upper_case_globals)]
 
-/// max VM memory size
-pub const VM_MSZ: usize = 0x10000;
-/// return stack size (max call depth)
-pub const VM_RSZ: usize = 0x100;
-/// data stack size (limited)
-pub const VM_DSZ: usize = 0x10;
+pub mod vm {
+    /// max VM memory size
+    pub const Msz: usize = 0x10000;
+    /// return stack size (max call depth)
+    pub const Rsz: usize = 0x100;
+    /// data stack size (limited)
+    pub const Dsz: usize = 0x10;
+}
 
 /// Web server default bind ip
 pub mod server {
