@@ -6,10 +6,10 @@
 use crate::config::*;
 
 /// 2D coordinates
-type Coord = (i16, i16);
+struct Coord(i16, i16);
 
 /// color: RGB TrueColor
-type Color = (u8, u8, u8);
+struct Color(u8, u8, u8);
 
 pub struct GUI<'a> {
     title: &'a str,
