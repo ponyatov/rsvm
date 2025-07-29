@@ -3,6 +3,7 @@
 #![allow(dead_code)]
 #![allow(unused_imports)]
 
+use crate::config::gui::font_size;
 use crate::config::*;
 
 use sdl2::event::Event;
@@ -30,6 +31,7 @@ pub struct GUI<'a> {
     window: sdl2::video::Window,
     canvas: Canvas<Window>,
     status_rect: sdl2::rect::Rect,
+    navbar_rect: sdl2::rect::Rect,
     logo_rect: sdl2::rect::Rect,
 }
 
@@ -59,6 +61,12 @@ impl<'a> GUI<'a> {
             config::gui::width as u32,
             config::gui::font_size as u32,
         );
+        let navbar_rect = sdl2::rect::Rect::new(
+            0,
+            (config::gui::height - config::gui::font_size).into(),
+            config::gui::width as u32,
+            config::gui::font_size as u32,
+        );
         let logo_rect = sdl2::rect::Rect::new(
             (config::gui::font_size / 4).into(),
             (config::gui::font_size / 4).into(),
@@ -73,6 +81,7 @@ impl<'a> GUI<'a> {
             window,
             canvas,
             status_rect,
+            navbar_rect,
             logo_rect,
         }
     }
@@ -98,6 +107,12 @@ impl<'a> GUI<'a> {
         self.canvas
             .copy(&logo_texture, None, self.logo_rect)
             .unwrap();
+
+        // navbar
+        let (r, g, b) = config::gui::navbar_bg;
+        self.canvas
+            .set_draw_color(sdl2::pixels::Color::RGB(r, g, b));
+        self.canvas.fill_rect(self.navbar_rect).unwrap();
 
         // show
         self.canvas.present();
