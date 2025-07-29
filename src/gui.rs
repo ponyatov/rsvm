@@ -77,14 +77,15 @@ impl<'a> GUI<'a> {
         use crate::config;
 
         // background
+        let (r, g, b) = config::gui::root_bg;
         self.canvas
-            .set_draw_color(sdl2::pixels::Color::RGB(config::gui::root_bg));
+            .set_draw_color(sdl2::pixels::Color::RGB(r, g, b));
         self.canvas.clear();
 
         // statusbar
         self.canvas
             .set_draw_color(sdl2::pixels::Color::RGB(0x22, 0x11, 0x11));
-        self.canvas.fill_rect(status_rect).unwrap();
+        self.canvas.fill_rect(self.status_rect).unwrap();
 
         // logo
         self.canvas
