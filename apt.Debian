@@ -1,4 +1,6 @@
 git make curl
 code meld doxygen clang-format
+g++ cmake gdb gdb-multiarch
+libsdl2-dev libsdl2-ttf-dev libsdl2-image-dev
 dotnet-runtime-9.0 dotnet-sdk-9.0
 wabt
