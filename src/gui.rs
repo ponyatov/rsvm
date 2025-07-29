@@ -41,10 +41,13 @@ impl<'a> GUI<'a> {
             .window(title, config::gui::width as u32, config::gui::height as u32)
             .build()
             .unwrap();
-        let mut canvas = window.into_canvas().build().unwrap();
+        let canvas = window.clone().into_canvas().build().unwrap();
         let texture_creator = canvas.texture_creator();
-        let logo_surface = sdl2::surface::Surface::load_bmp("doc/logo.png").unwrap();
-        let logo_texture = texture_creator.create_texture_from_surface(&logo_surface).unwrap();
+        let mut rwops_logo = sdl2::rwops::RWops::from_bytes(LOGO_PNG).unwrap();
+        let logo_surface = sdl2::surface::Surface::load_bmp_rw(&mut rwops_logo).unwrap();
+        let logo_texture = texture_creator
+            .create_texture_from_surface(&logo_surface)
+            .unwrap();
         let logo_rect = sdl2::rect::Rect::new(
             config::gui::font_size as i32,
             config::gui::font_size as i32,
@@ -74,15 +77,17 @@ impl<'a> GUI<'a> {
         self.canvas
             .set_draw_color(sdl2::pixels::Color::RGB(0x22, 0x11, 0x11));
         let status_rect = sdl2::rect::Rect::new(
-            0,
-            0,
+            (config::gui::font_size / 2).into(),
+            (config::gui::font_size / 2).into(),
             config::gui::width as u32,
             config::gui::font_size as u32,
         );
         self.canvas.fill_rect(status_rect).unwrap();
 
         // logo
-        self.canvas.copy(&self.logo_texture, None, self.logo_rect).ok();
+        self.canvas
+            .copy(&self.logo_texture, None, self.logo_rect)
+            .ok();
 
         // show
         self.canvas.present();
