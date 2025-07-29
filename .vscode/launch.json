@@ -10,8 +10,8 @@
                     "build",
                     "--bin=${workspaceFolderBasename}",
                     "--package=${workspaceFolderBasename}",
-                    "--target=x86_64-unknown-linux-gnu"
-                    // "--features=pc,i5,x86_64,linux"
+                    "--target=x86_64-unknown-linux-gnu",
+                    "--features=pc"
                 ],
                 "filter": {
                     "name": "main",

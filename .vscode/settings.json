@@ -26,9 +26,9 @@
     "editor.fontSize": 14,
     "explorer.autoReveal": false,
     "terminal.integrated.copyOnSelection": true,
-    // "git.enabled": false,
     "files.autoSave": "afterDelay",
     "files.autoSaveDelay": 2222,
+    // "git.enabled": false,
 
     // JavaScript
     "prettier.configPath"         : ".prettierrc",

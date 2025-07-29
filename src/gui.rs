@@ -11,14 +11,20 @@ struct Coord(i16, i16);
 /// color: RGB TrueColor
 struct Color(u8, u8, u8);
 
+#[cfg(feature = "sdl")]
 pub struct GUI<'a> {
     title: &'a str,
+    sdl_context: sdl2::Sdl,
 }
 
 impl<'a> GUI<'a> {
     pub fn new(title: &'a str) -> Self {
-        GUI { title }
+        GUI {
+            title,
+            sdl_context: sdl2::init().unwrap(),
+        }
     }
 
-    pub fn run(&self) {}
+    #[cfg(feature = "sdl")]
+    pub fn run(&mut self) {}
 }

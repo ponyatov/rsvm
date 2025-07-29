@@ -27,7 +27,7 @@ nom          = "8.0"
 [target.'cfg(all(target_os = "linux"))'.dependencies]
 libc    = "0.2"
 memmap2 = "0.9"
-sdl2    = {version = "0.38", features = ["ttf"]}
+sdl2    = {version = "0.38", features = ["ttf"], optional = true}
 
 [features]
 
@@ -38,4 +38,6 @@ i5              = ["x86_64"]
 # arch
 x86_64          = ["linux"]
 # os
-linux           = []
+linux           = ["sdl"]
+# gui variant
+sdl             = ["dep:sdl2"]

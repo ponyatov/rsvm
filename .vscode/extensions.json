@@ -5,13 +5,12 @@
         "IBM.output-colorizer",
         // formatters
         "xaver.clang-format",
-        "foxundermoon.shell-format",
         "esbenp.prettier-vscode",
+        "foxundermoon.shell-format",
         // misc
         "usernamehw.errorlens",
         // Web/JS
         "esbenp.prettier-vscode",
-        "mechatroner.rainbow-csv",
         "jock.svg",
         "dtsvet.vscode-wasm",
         // C++
