@@ -6,9 +6,11 @@
 use crate::config::*;
 
 use sdl2::event::Event;
+use sdl2::image::{InitFlag, LoadTexture};
 use sdl2::keyboard::Keycode;
-use sdl2::render::Canvas;
+use sdl2::render::{Canvas, TextureCreator};
 use sdl2::surface::{self, Surface};
+use sdl2::video::{Window, WindowContext};
 use std::time::Duration;
 
 /// 2D coordinates
@@ -23,11 +25,11 @@ pub const LOGO_PNG: &[u8] = include_bytes!("../doc/logo.png");
 pub struct GUI<'a> {
     title: &'a str,
     sdl_context: sdl2::Sdl,
+    image_context: sdl2::image::Sdl2ImageContext,
     video_subsystem: sdl2::VideoSubsystem,
     window: sdl2::video::Window,
-    canvas: sdl2::render::Canvas<sdl2::video::Window>,
+    canvas: Canvas<Window>,
     status_rect: sdl2::rect::Rect,
-    logo_texture: sdl2::render::Texture<'a>,
     logo_rect: sdl2::rect::Rect,
 }
 
@@ -37,38 +39,40 @@ impl<'a> GUI<'a> {
         use crate::config;
 
         let sdl_context = sdl2::init().unwrap();
+        let image_context = sdl2::image::init(InitFlag::PNG).unwrap();
         let video_subsystem = sdl_context.clone().video().unwrap();
+        let display_mode = video_subsystem.current_display_mode(0).unwrap();
         let window = video_subsystem
             .window(title, config::gui::width as u32, config::gui::height as u32)
+            .always_on_top()
+            .borderless()
+            .position(
+                (config::gui::icon_size / 4).into(),
+                display_mode.h - (config::gui::height + 2 * config::gui::icon_size) as i32,
+            )
             .build()
             .unwrap();
-        let canvas = window.into_canvas().build().unwrap();
+        let canvas = window.clone().into_canvas().build().unwrap();
         let status_rect = sdl2::rect::Rect::new(
-            (config::gui::font_size / 2).into(),
-            (config::gui::font_size / 2).into(),
+            0,
+            0,
             config::gui::width as u32,
             config::gui::font_size as u32,
         );
-        let texture_creator = canvas.texture_creator();
-        let mut rwops_logo = sdl2::rwops::RWops::from_bytes(LOGO_PNG).unwrap();
-        let logo_surface = sdl2::surface::Surface::load_png_rw(&mut rwops_logo).unwrap();
-        let logo_texture = texture_creator
-            .create_texture_from_surface(&logo_surface)
-            .unwrap();
         let logo_rect = sdl2::rect::Rect::new(
-            config::gui::font_size as i32,
-            config::gui::font_size as i32,
+            (config::gui::font_size / 4).into(),
+            (config::gui::font_size / 4).into(),
             config::gui::icon_size as u32,
             config::gui::icon_size as u32,
         );
         GUI {
             title,
             sdl_context,
+            image_context,
             video_subsystem,
             window,
             canvas,
             status_rect,
-            logo_texture,
             logo_rect,
         }
     }
@@ -83,13 +87,16 @@ impl<'a> GUI<'a> {
         self.canvas.clear();
 
         // statusbar
+        let (r, g, b) = config::gui::status_bg;
         self.canvas
-            .set_draw_color(sdl2::pixels::Color::RGB(0x22, 0x11, 0x11));
+            .set_draw_color(sdl2::pixels::Color::RGB(r, g, b));
         self.canvas.fill_rect(self.status_rect).unwrap();
 
         // logo
+        let texture_creator = self.canvas.texture_creator();
+        let logo_texture = texture_creator.load_texture_bytes(LOGO_PNG).unwrap();
         self.canvas
-            .copy(&self.logo_texture, None, self.logo_rect)
+            .copy(&logo_texture, None, self.logo_rect)
             .unwrap();
 
         // show
