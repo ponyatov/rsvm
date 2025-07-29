@@ -15,16 +15,45 @@ struct Color(u8, u8, u8);
 pub struct GUI<'a> {
     title: &'a str,
     sdl_context: sdl2::Sdl,
+    video_subsystem: sdl2::VideoSubsystem,
+    window: sdl2::video::Window,
+    // canvas: sdl2::render::Canvas<sdl2::video::Window>,
+    // texture_creator: sdl2::render::TextureCreator<sdl2::video::WindowContext>,
+    // texture: sdl2::render::Texture<'a>,
 }
 
+#[cfg(feature = "sdl")]
 impl<'a> GUI<'a> {
     pub fn new(title: &'a str) -> Self {
+        use crate::config;
+
+        let sdl_context = sdl2::init().unwrap();
+        let video_subsystem = sdl_context.clone().video().unwrap();
+        let window = video_subsystem
+            .window(title, config::gui::width as u32, config::gui::height as u32)
+            .build()
+            .unwrap();
         GUI {
             title,
-            sdl_context: sdl2::init().unwrap(),
+            sdl_context,
+            video_subsystem,
+            window,
         }
     }
 
-    #[cfg(feature = "sdl")]
+    pub fn run(&mut self) {}
+}
+
+#[cfg(not(feature = "sdl"))]
+pub struct GUI<'a> {
+    title: &'a str,
+}
+
+#[cfg(not(feature = "sdl"))]
+impl<'a> GUI<'a> {
+    pub fn new(title: &'a str) -> Self {
+        GUI { title }
+    }
+
     pub fn run(&mut self) {}
 }

@@ -25,13 +25,13 @@ pub mod server {
 /// screen width
 pub mod gui {
     /// screen width (mobile phone emulation)
-    pub const width: u16 = 240;
+    pub const width: i16 = 240;
     /// screen height (mobile phone emulation)
-    pub const height: u16 = 320;
+    pub const height: i16 = 320;
     /// base font size
-    pub const font_size: u16 = height / 4;
+    pub const font_size: i16 = height / 4;
     /// large icons (for tiny phone screen)
-    pub const icon_size: u16 = 64;
+    pub const icon_size: i16 = 64;
 
     // /// root window background
     pub const root_bg: (u8, u8, u8) = (0x22, 0x22, 0x22);
