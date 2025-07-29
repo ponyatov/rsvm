@@ -31,13 +31,13 @@ pub mod gui {
     /// large icons (for tiny phone screen)
     pub const icon_size: i16 = 64;
     /// base font size
-    pub const font_size: i16 = icon_size/2;//height / 0x10;
+    pub const font_size: i16 = icon_size / 2;
 
     /// root window background
     pub const root_bg: (u8, u8, u8) = (0x11, 0x22, 0x33);
     // status bar background
-    pub const status_bg: (u8,u8,u8) = (0x11, 0x33, 0x22);
+    pub const status_bg: (u8, u8, u8) = (0x11, 0x33, 0x22);
     // pub const status_clock: sdl2::pixels::Color = sdl2::pixels::Color::RGB(0xAA, 0xBB, 0xCC);
     // navigator bar background
-    pub const navbar_bg: (u8,u8,u8) = (0x22, 0x22, 0x11);
+    pub const navbar_bg: (u8, u8, u8) = (0x22, 0x22, 0x11);
 }

@@ -3,7 +3,6 @@
 #![allow(dead_code)]
 #![allow(unused_imports)]
 
-use crate::config::gui::font_size;
 use crate::config::*;
 
 use sdl2::event::Event;
