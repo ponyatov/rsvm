@@ -28,12 +28,12 @@ pub mod gui {
     pub const width: i16 = 240;
     /// screen height (mobile phone emulation)
     pub const height: i16 = 320;
-    /// base font size
-    pub const font_size: i16 = height / 4;
     /// large icons (for tiny phone screen)
     pub const icon_size: i16 = 64;
+    /// base font size
+    pub const font_size: i16 = icon_size/2;//height / 0x10;
 
-    // /// root window background
+    /// root window background
     pub const root_bg: (u8, u8, u8) = (0x22, 0x22, 0x22);
     // // status bar background
     // pub const status_bg: sdl2::pixels::Color = sdl2::pixels::Color::RGB(0x22, 0x11, 0x11);
