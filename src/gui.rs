@@ -43,17 +43,3 @@ impl<'a> GUI<'a> {
 
     pub fn run(&mut self) {}
 }
-
-#[cfg(not(feature = "sdl"))]
-pub struct GUI<'a> {
-    title: &'a str,
-}
-
-#[cfg(not(feature = "sdl"))]
-impl<'a> GUI<'a> {
-    pub fn new(title: &'a str) -> Self {
-        GUI { title }
-    }
-
-    pub fn run(&mut self) {}
-}
