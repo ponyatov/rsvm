@@ -87,7 +87,7 @@ impl<'a> GUI<'a> {
         // logo
         self.canvas
             .copy(&self.logo_texture, None, self.logo_rect)
-            .ok();
+            .unwrap();
 
         // show
         self.canvas.present();
